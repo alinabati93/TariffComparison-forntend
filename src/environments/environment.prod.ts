@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  apiAddress: 'http://localhost:5071/Api/Tariff'
 };
