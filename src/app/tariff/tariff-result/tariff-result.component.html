@@ -1,0 +1,26 @@
+<div class="main">
+  <div *ngFor="let item of tariffs" class="tariff-container">
+    <div class="tariff-header">
+      <div>
+        Product Name:
+      </div>
+      <div>
+        Base Costs:
+      </div>
+      <div>
+        Consumption Costs:
+      </div>
+      <div>
+        Annual Costs:
+      </div>
+    </div>
+
+    <div class="tariff-body">
+      <div>{{item.name}}</div>
+      <div>{{item.baseCostsText}}</div>
+      <div>{{item.consumptionCostsText}}</div>
+      <div>{{item.annualCostsText}}</div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,50 @@
+.request-card {
+  width: 500px;
+  max-width: 85vw;
+
+  mat-card-header {
+    align-self: center;
+    color: whitesmoke;
+    mat-card-title {
+      font-size: 1.7rem;
+      transition: font-size ease-in 250ms;
+      @media (max-width: 767px) {
+        font-size: 1.3rem;
+      }
+      @media (max-width: 575px) {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  form {
+    width: 100%;
+    text-align: center;
+    input {
+      text-align: center !important;
+    }
+    button {
+      transition: all ease-in 250ms;
+      @media (min-width: 768px) {
+        font-size: 24px;
+        height: 56px;
+        padding: 0 30px;
+      }
+
+      @media (max-width: 767px) and (min-width: 575px) {
+        font-size: 20px;
+        height: 46px;
+        padding: 0 24px;
+      }
+    }
+  }
+
+  mat-card-content {
+    padding-top: 2rem;
+    padding-bottom: 1.5rem;
+  }
+}
+
+.full-width {
+  width: 100%;
+}

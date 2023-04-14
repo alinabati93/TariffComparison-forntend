@@ -1,0 +1,30 @@
+<mat-card class="request-card">
+  <mat-card-header>
+    <mat-card-title>Choose the best tariff right now!</mat-card-title>
+  </mat-card-header>
+
+
+  <mat-card-content>
+    <form [formGroup]="form">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Enter your annual consume</mat-label>
+        <input type="text" matInput autocomplete="off" [readonly]="isLoading" [formControlName]="'consumeFormControl'"
+          [errorStateMatcher]="matcher">
+        <mat-error
+          *ngIf="form.get('consumeFormControl').hasError('pattern') && !form.get('consumeFormControl').hasError('required')">
+          Please enter a valid number
+        </mat-error>
+        <mat-error *ngIf="form.get('consumeFormControl').hasError('required')">
+          Your annual consume is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <button mat-flat-button color="primary" [disabled]="!form.valid || isLoading"
+        (click)="getTariffs()">Submit</button>
+    </form>
+  </mat-card-content>
+
+
+  <mat-card-footer>
+    <mat-progress-bar [style.visibility]="!isLoading?'hidden':''" mode="indeterminate"></mat-progress-bar>
+  </mat-card-footer>
+</mat-card>
