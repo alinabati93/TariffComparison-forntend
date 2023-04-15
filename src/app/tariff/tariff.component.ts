@@ -3,10 +3,9 @@ import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '
 import { ErrorStateMatcher } from '@angular/material/core';
 import { TariffService } from 'src/services/tariff.service';
 import { TariffFilters } from 'src/models/tarrif-filters';
-import { catchError, delay } from 'rxjs/operators';
 import { Dialog } from '@angular/cdk/dialog';
 import { TariffResultComponent } from './tariff-result/tariff-result.component';
-import { environment } from 'src/environments/environment';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -21,7 +20,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./tariff.component.scss']
 })
 export class TariffComponent {
-  constructor(private tariffService: TariffService, public dialog: Dialog) { }
+  constructor(private tariffService: TariffService, public dialog: Dialog, private snackBar: MatSnackBar) { }
 
 
   title = 'TariffComparison';
@@ -45,16 +44,24 @@ export class TariffComponent {
 
     this.isLoading = true;
 
-    this.tariffService.getTariffs(filters).pipe(
-      delay(environment.production ? 0 : 750)
-    ).subscribe(res => {
-      this.isLoading = false;
-
-      this.dialog.open(TariffResultComponent, {
-        data: res,
-        width: '700px',
-        maxWidth: '95vw'
-      });
+    this.tariffService.getTariffs(filters).subscribe({
+      next: res => {
+        this.dialog.open(TariffResultComponent, {
+          data: res,
+          width: '700px',
+          maxWidth: '95vw'
+        });
+      },
+      error: err => {
+        this.snackBar.open('Error: ' + err.message, null, {
+          panelClass: 'error-alert',
+          duration: 3000
+        });
+        this.isLoading = false
+      },
+      complete: () => {
+        this.isLoading = false
+      }
     });
 
 

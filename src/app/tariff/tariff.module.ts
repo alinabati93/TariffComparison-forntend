@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { TariffResultComponent } from './tariff-result/tariff-result.component';
 import { DialogModule } from '@angular/cdk/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { DialogModule } from '@angular/cdk/dialog';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    DialogModule
+    DialogModule,
+    MatSnackBarModule
   ]
 })
 export class TariffModule { }
